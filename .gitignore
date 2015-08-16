@@ -26,6 +26,8 @@
 
 # Mongo Explorer plugin:
 # .idea/mongoSettings.xml
+!.idea/codeStyleSettings.xml
+!.idea/copyright/
 
 ## File-based project format:
 *.ipr
@@ -66,7 +68,6 @@ hs_err_pid*
 ### Eclipse template
 *.pydevproject
 .metadata
-.gradle
 bin/
 tmp/
 *.tmp
@@ -113,12 +114,8 @@ local.properties
 
 
 ### Gradle template
-.gradle
+.gradle/
 build/
-gradlew
-gradlew.bat
-*.gradle
-gradle/
 
 # Ignore Gradle GUI config
 gradle-app.setting
