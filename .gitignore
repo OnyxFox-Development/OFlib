@@ -26,8 +26,7 @@
 
 # Mongo Explorer plugin:
 # .idea/mongoSettings.xml
-!.idea/codeStyleSettings.xml
-!.idea/copyright/
+
 
 ## File-based project format:
 *.ipr
@@ -51,8 +50,6 @@ crashlytics-build.properties
 
 
 ### Java template
-*.class
-
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
@@ -122,5 +119,6 @@ gradle-app.setting
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
-
-
+!/.idea/codeStyleSettings.xml
+!/.idea/copyright/profiles_settings.xml
+!/.idea/copyright/
