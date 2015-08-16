@@ -1,10 +1,12 @@
 package net.ofd.oflib.cli;
 
+import java.util.Scanner;
+
 public class Cli
 {
 	public static void print(Object o)
 	{
-		System.out.println(o);
+		print(o, true);
 	}
 
 	public static void print(Object o, boolean newline)
@@ -15,7 +17,17 @@ public class Cli
 		}
 		else
 		{
-			print(o);
+			System.out.println(o);
+		}
+	}
+
+	public static class Prompt
+	{
+		public static String basic(String s)
+		{
+			Scanner scanner = new Scanner(System.in);
+			print(s + ": ", false);
+			return scanner.nextLine();
 		}
 	}
 }
