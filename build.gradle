@@ -1,12 +1,94 @@
-apply plugin: 'java'
+/*
+ * Copyright (c) 2015.
+ * This file is part of OFlib.
+ *
+ * OFlib is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * OFlib is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with OFlib.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-sourceCompatibility = 1.5
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
 version = '1.0'
+group = 'net.ofd'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile "junit:junit:+"
 }
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from tasks.javadoc.destinationDir
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+artifacts {
+    archives jar
+    archives javadocJar
+    archives sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: sonatypeUsername, password: sonatypePassword)
+            }
+
+            pom.project {
+                name = jar.baseName
+                packaging = 'jar'
+                description = 'Library used by all OnyxFox Development projects'
+                url = 'http://github.com/OnyxFox-Devlopment/OFlib'
+
+                scm {
+                    url = 'https://github.com/OnyxFox-Devlopment/OFlib.git'
+                    connection = 'scm:git:git@github.com/OnyxFox-Devlopment/OFlib.git'
+                    developerConnection = 'scm:git:git@github.com:OnyxFox-Devlopment/OFlib.git'
+                }
+
+                licenses {
+                    license {
+                        name = 'GNU General Public License 3.0'
+                        url = 'https://www.gnu.org/licenses/gpl-3.0.txt'
+                        distribution = 'repo'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'linuxdemon'
+                        name = 'Walter Barnes'
+                    }
+                }
+            }
+        }
+    }
+}
+
