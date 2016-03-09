@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015.
+ * Copyright (c) 2016.
  * This file is part of OFlib.
  *
  * OFlib is free software: you can redistribute it and/or modify
@@ -28,9 +28,10 @@ repositories {
 }
 
 dependencies {
-    testCompile "junit:junit:+"
-    compile 'com.google.code.findbugs:jsr305:+'
-    compile 'com.google.guava:guava:+'
+    testCompile "junit:junit:4.11"
+    compile 'com.google.code.findbugs:jsr305:3.0.1'
+    compile 'com.google.guava:guava:19.0'
+    compile 'com.googlecode.lanterna:lanterna:3.0.0-beta1'
 }
 
 tasks.javadoc {
@@ -75,19 +76,19 @@ uploadArchives {
                     authentication(userName: sonatypeUsername, password: sonatypePassword)
                 }
             } else {
-                mavenLocal()
+                repository(url: "file://${local_maven}")
             }
 
             pom.project {
                 name = jar.baseName
                 packaging = 'jar'
                 description = 'Library used by all OnyxFox Development projects'
-                url = 'http://github.com/OnyxFox-Devlopment/OFlib'
+                url = 'http://github.com/OnyxFox-Development/OFlib'
 
                 scm {
-                    url = 'https://github.com/OnyxFox-Devlopment/OFlib.git'
-                    connection = 'scm:git:git@github.com/OnyxFox-Devlopment/OFlib.git'
-                    developerConnection = 'scm:git:git@github.com:OnyxFox-Devlopment/OFlib.git'
+                    url = 'https://github.com/OnyxFox-Development/OFlib.git'
+                    connection = 'scm:git:git@github.com/OnyxFox-Development/OFlib.git'
+                    developerConnection = 'scm:git:git@github.com:OnyxFox-Development/OFlib.git'
                 }
 
                 licenses {

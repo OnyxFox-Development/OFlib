@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015.
+ * Copyright (c) 2016.
  * This file is part of OFlib.
  *
  * OFlib is free software: you can redistribute it and/or modify
@@ -16,8 +16,20 @@
  * along with OFlib.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.ofd.oflib;
+package com.github.OnyxFoxDevelopment.environment;
 
-public class ArrayHelper
+public class Environment
 {
+	public static boolean isClassLoaded(String binaryName)
+	{
+		try
+		{
+			Class.forName(binaryName, false, Environment.class.getClassLoader());
+		}
+		catch (ClassNotFoundException e)
+		{
+			return false;
+		}
+		return true;
+	}
 }
