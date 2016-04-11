@@ -31,6 +31,8 @@ if (hasProperty("teamcity")) {
 }
 version = version + "." + buildNum
 
+sourceCompatibility = 1.7
+
 repositories {
     mavenCentral()
     maven {

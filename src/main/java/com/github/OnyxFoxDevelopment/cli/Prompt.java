@@ -21,16 +21,18 @@ package com.github.OnyxFoxDevelopment.cli;
 import java.io.Console;
 import java.util.LinkedList;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.regex.Pattern;
 
+/**
+ * Generic methods for prompting for user input
+ */
 @SuppressWarnings ({"WeakerAccess", "unused"})
 public class Prompt
 {
 	/**
 	 * System console (null when used in an IDE)
 	 */
-	private static final Console console = System.console();
+	private static final ConsoleWrapper console = new ConsoleWrapper();
 
 	/**
 	 * Prompts the user for an input, and returns {@code def} if no input was entered
@@ -60,46 +62,13 @@ public class Prompt
 	public static String prompt(String title, Pattern valid)
 	{
 		String l;
-		printf(title);
-		while (!valid.matcher(l = readLine()).matches())
+		console.printf(title);
+		while (!valid.matcher(l = console.readLine()).matches())
 		{
-			printf("Invalid Value!!%n");
-			printf(title);
+			console.printf("Invalid Value!!%n");
+			console.printf(title);
 		}
 		return l;
-	}
-
-	/**
-	 * Formats {@code format} using the values in {@code args}
-	 *
-	 * @param format String defining format
-	 * @param args   Substitution values
-	 */
-	public static void printf(String format, Object... args)
-	{
-		if (console == null)
-		{
-			System.out.printf(format, (java.lang.Object[]) args);
-		}
-		else
-		{
-			console.printf(format, (java.lang.Object[]) args);
-		}
-	}
-
-	/**
-	 * Reads a single line from the system input and returns it
-	 *
-	 * @return input line
-	 */
-	public static String readLine()
-	{
-		if (console != null)
-		{
-			return console.readLine();
-		}
-		Scanner s = new Scanner(System.in);
-		return s.nextLine();
 	}
 
 	/**
@@ -138,16 +107,16 @@ public class Prompt
 	public static String promptList(String title, Map<String, String> opts)
 	{
 		LinkedList<String> l = new LinkedList<>();
-		printf("%s%n", title);
+		console.printf("%s%n", title);
 		for (Map.Entry<String, String> entry : opts.entrySet())
 		{
 			l.add(entry.getValue());
-			printf("%d) %s%n", l.size(), entry.getKey());
+			console.printf("%d) %s%n", l.size(), entry.getKey());
 		}
 		int i = promptInt("Option?: ");
 		while (i > l.size())
 		{
-			printf("Invalid Option");
+			console.printf("Invalid Option");
 			i = promptInt("Option?: ");
 		}
 		return l.get(i - 1);
@@ -173,23 +142,13 @@ public class Prompt
 	 */
 	public static String password(String title, Pattern valid)
 	{
-		printf(title);
+		console.printf(title);
 		String p;
-		while (!valid.matcher(p = readPassword()).matches())
+		while (!valid.matcher(p = console.readPassword()).matches())
 		{
-			printf("Invalid Value!!%n");
-			printf(title);
+			console.printf("Invalid Value!!%n");
+			console.printf(title);
 		}
 		return p;
-	}
-
-	/**
-	 * Reads a line from the terminal, and uses {@link Console#readPassword()} to hide user input, if available
-	 *
-	 * @return typed password
-	 */
-	public static String readPassword()
-	{
-		return console == null ? readLine() : new String(console.readPassword());
 	}
 }

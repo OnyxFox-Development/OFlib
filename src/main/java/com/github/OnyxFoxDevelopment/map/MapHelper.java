@@ -23,6 +23,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * A collection of utility methods for Maps and all types that implement {@link Map}
+ */
 @SuppressWarnings ({"WeakerAccess", "unused"})
 public class MapHelper
 {

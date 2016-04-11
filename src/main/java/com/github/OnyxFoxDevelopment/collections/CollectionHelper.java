@@ -23,6 +23,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * A collection of utility methods for collections and all types that implement {@link Collection}
+ */
+@SuppressWarnings ("WeakerAccess")
 public class CollectionHelper
 {
 	/**

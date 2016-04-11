@@ -16,29 +16,8 @@
  * along with OFlib.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.github.OnyxFoxDevelopment.environment;
-
 /**
- * A collection of methods for interfacing with the runtime environment
+ * @author linuxdemon
+ * @version
  */
-public class Environment
-{
-	/**
-	 * Checks if a class is loaded in the current JVM
-	 *
-	 * @param binaryName Full class name including package
-	 * @return true if class is loaded, false otherwise
-	 */
-	public static boolean isClassLoaded(String binaryName)
-	{
-		try
-		{
-			Class.forName(binaryName, false, Environment.class.getClassLoader());
-		}
-		catch (ClassNotFoundException e)
-		{
-			return false;
-		}
-		return true;
-	}
-}
+package com.github.OnyxFoxDevelopment;
