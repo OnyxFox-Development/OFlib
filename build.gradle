@@ -25,10 +25,13 @@ group = 'com.github.OnyxFoxDevelopment'
 
 repositories {
     mavenCentral()
+    maven {
+        url "http://maven.walterbarnes.net:8081/nexus/content/groups/public"
+    }
 }
 
 dependencies {
-    testCompile "junit:junit:4.11"
+    testCompile 'junit:junit:4.11'
     compile 'com.google.code.findbugs:jsr305:3.0.1'
     compile 'com.google.guava:guava:19.0'
     compile 'com.googlecode.lanterna:lanterna:3.0.0-beta1'
@@ -70,10 +73,15 @@ uploadArchives {
         mavenDeployer {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
-            boolean local = true;
+            boolean local = false;
             if (!local) {
-                repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                    authentication(userName: sonatypeUsername, password: sonatypePassword)
+                repository(
+                        url: "http://maven.walterbarnes.net:8081/nexus/content/repositories/releases") {
+                    authentication(userName: nexusUsername, password: nexusPassword)
+                }
+                snapshotRepository(
+                        url: "http://maven.walterbarnes.net:8081/nexus/content/repositories/snaposhots") {
+                    authentication(userName: nexusUsername, password: nexusPassword)
                 }
             } else {
                 repository(url: "file://${local_maven}")
