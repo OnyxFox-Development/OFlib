@@ -24,10 +24,22 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+@SuppressWarnings ({"WeakerAccess", "unused"})
 public class Prompt
 {
+	/**
+	 * System console (null when used in an IDE)
+	 */
 	private static final Console console = System.console();
 
+	/**
+	 * Prompts the user for an input, and returns {@code def} if no input was entered
+	 *
+	 * @param title Text to prompt the user with
+	 * @param valid Pattern matching expected input
+	 * @param def   Default value
+	 * @return User input
+	 */
 	public static String prompt(String title, Pattern valid, String def)
 	{
 		String s = prompt(title, valid);
@@ -38,23 +50,36 @@ public class Prompt
 		return s;
 	}
 
+	/**
+	 * Prompts the user for an input, and if it matches {@code valid}, returns it
+	 *
+	 * @param title Text to prompt user with
+	 * @param valid Pattern matching expected input
+	 * @return User input
+	 */
 	public static String prompt(String title, Pattern valid)
 	{
 		String l;
 		printf(title);
 		while (!valid.matcher(l = readLine()).matches())
 		{
-			System.out.println("Invalid Value!!");
-			System.out.print(title);
+			printf("Invalid Value!!%n");
+			printf(title);
 		}
 		return l;
 	}
 
+	/**
+	 * Formats {@code format} using the values in {@code args}
+	 *
+	 * @param format String defining format
+	 * @param args   Substitution values
+	 */
 	public static void printf(String format, Object... args)
 	{
 		if (console == null)
 		{
-			System.out.print(String.format(format, (java.lang.Object[]) args));
+			System.out.printf(format, (java.lang.Object[]) args);
 		}
 		else
 		{
@@ -62,6 +87,11 @@ public class Prompt
 		}
 	}
 
+	/**
+	 * Reads a single line from the system input and returns it
+	 *
+	 * @return input line
+	 */
 	public static String readLine()
 	{
 		if (console != null)
@@ -72,12 +102,25 @@ public class Prompt
 		return s.nextLine();
 	}
 
+	/**
+	 * Prompts the user for an integer value
+	 *
+	 * @param title Prompt text
+	 * @param def   Default value
+	 * @return User input
+	 */
 	public static int promptInt(String title, int def)
 	{
 		String l = prompt(title, Pattern.compile(" ?[0-9]*"));
 		return l.isEmpty() || l.equals(" ") ? def : Integer.parseInt(l);
 	}
 
+	/**
+	 * Prompts the user with a question, expecting yes or no as an input
+	 *
+	 * @param title Prompt text
+	 * @return true on yes or blank input, false otherwise
+	 */
 	public static boolean promptYesNo(String title)
 	{
 		Pattern affirm = Pattern.compile("[Yy ]?");
@@ -85,6 +128,13 @@ public class Prompt
 		return affirm.matcher(l).matches();
 	}
 
+	/**
+	 * Prompts the user with a list of options
+	 *
+	 * @param title Prompt text
+	 * @param opts  Option map in format {@code option name, option value}
+	 * @return option value selected by user
+	 */
 	public static String promptList(String title, Map<String, String> opts)
 	{
 		LinkedList<String> l = new LinkedList<>();
@@ -103,11 +153,24 @@ public class Prompt
 		return l.get(i - 1);
 	}
 
+	/**
+	 * Returns an integer input from the user
+	 *
+	 * @param title Prompt text
+	 * @return User input
+	 */
 	public static int promptInt(String title)
 	{
 		return Integer.parseInt(prompt(title, Pattern.compile("[0-9]+")));
 	}
 
+	/**
+	 * Prompts the user for a password, and if available, uses the {@link Console#readPassword()} method, to hide user input
+	 *
+	 * @param title Prompt text
+	 * @param valid Pattern restricting password input
+	 * @return password entered by user
+	 */
 	public static String password(String title, Pattern valid)
 	{
 		printf(title);
@@ -120,6 +183,11 @@ public class Prompt
 		return p;
 	}
 
+	/**
+	 * Reads a line from the terminal, and uses {@link Console#readPassword()} to hide user input, if available
+	 *
+	 * @return typed password
+	 */
 	public static String readPassword()
 	{
 		return console == null ? readLine() : new String(console.readPassword());

@@ -16,7 +16,7 @@
  * along with OFlib.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.github.OnyxFoxDevelopment;
+package com.github.OnyxFoxDevelopment.collections;
 
 public class ArrayHelper
 {

@@ -18,29 +18,53 @@
 
 package com.github.OnyxFoxDevelopment.map;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
+@SuppressWarnings ({"WeakerAccess", "unused"})
 public class MapHelper
 {
-	public static LinkedHashMap<String, Integer> sortByValues(HashMap<String, Integer> map)
+	public static <K, V extends Comparable> LinkedHashMap<K, V> sortByValues(Map<K, V> map)
 	{
-		LinkedHashMap<String, Integer> sorted = new LinkedHashMap<>(map);
+		return sortByValues(map, false);
+	}
 
-		while (map.size() > 0)
+	/**
+	 * Sorts {@link Map} {@code map} by it's values
+	 *
+	 * @param map     Map to be sorted
+	 * @param reverse Should order be reverse
+	 * @return Sorted Map
+	 */
+	public static <K, V extends Comparable> LinkedHashMap<K, V> sortByValues(Map<K, V> map, boolean reverse)
+	{
+		int moves = 0;
+		boolean firstRun = true;
+
+		List<Map.Entry<K, V>> entrySet = new ArrayList<>(map.entrySet());
+		while (moves > 0 || firstRun)
 		{
-			String maxKey = (String) map.keySet().toArray()[0];
+			moves = 0;
+			firstRun = false;
 
-			for (String key : map.keySet())
+			for (int i = 1; i < entrySet.size(); i++)
 			{
-				if (map.get(key) > map.get(maxKey))
+				Map.Entry<K, V> entryA = entrySet.get(i - 1);
+				Map.Entry<K, V> entryB = entrySet.get(i);
+				if (reverse ? entryA.getValue().compareTo(entryB.getValue()) < 0 : entryA.getValue().compareTo(entryB.getValue()) > 0)
 				{
-					maxKey = key;
+					entrySet.set(i - 1, entryB);
+					entrySet.set(i, entryA);
+					moves++;
 				}
 			}
-
-			sorted.put(maxKey, map.get(maxKey));
-			map.remove(maxKey);
+		}
+		LinkedHashMap<K, V> sorted = new LinkedHashMap<>();
+		for (Map.Entry<K, V> entry : entrySet)
+		{
+			sorted.put(entry.getKey(), entry.getValue());
 		}
 
 		return sorted;
