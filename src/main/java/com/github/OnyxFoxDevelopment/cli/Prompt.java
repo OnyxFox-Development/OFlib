@@ -94,11 +94,11 @@ public class Prompt
 			l.add(entry.getValue());
 			printf("%d) %s%n", l.size(), entry.getKey());
 		}
-		int i = promptInt("Type?: ");
+		int i = promptInt("Option?: ");
 		while (i > l.size())
 		{
 			printf("Invalid Option");
-			i = promptInt("Type?: ");
+			i = promptInt("Option?: ");
 		}
 		return l.get(i - 1);
 	}
