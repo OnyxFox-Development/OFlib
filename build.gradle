@@ -20,8 +20,16 @@ apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'signing'
 
-version = '1.0'
+version = '0.1'
 group = 'com.github.OnyxFoxDevelopment'
+
+// If TeamCity is running this build, lets set the version info
+def buildNum = '0'
+if (hasProperty("teamcity")) {
+    buildNum = teamcity["build.number"]
+    println "##teamcity[buildNumber '" + version + "." + buildNum + "']"
+}
+version = version + "." + buildNum
 
 repositories {
     mavenCentral()
