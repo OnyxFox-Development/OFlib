@@ -30,8 +30,8 @@ public class CollectionHelperTest
 	@Test
 	public void sortByCompare() throws Exception
 	{
-		LinkedList<Integer> unsorted = (LinkedList<Integer>) Arrays.asList(1, 2, 7, 1, 2, 11, 12, 65, 2, 4, 6, 34, 9);
-		LinkedList<Integer> expected = (LinkedList<Integer>) Arrays.asList(1, 1, 2, 2, 2, 4, 6, 7, 9, 11, 12, 34, 65);
+		LinkedList<Integer> unsorted = new LinkedList<>(Arrays.asList(1, 2, 7, 1, 2, 11, 12, 65, 2, 4, 6, 34, 9));
+		LinkedList<Integer> expected = new LinkedList<>(Arrays.asList(1, 1, 2, 2, 2, 4, 6, 7, 9, 11, 12, 34, 65));
 		List<Integer> expRever = Arrays.asList(65, 34, 12, 11, 9, 7, 6, 4, 2, 2, 2, 1, 1);
 
 		LinkedList<Integer> sorted = CollectionHelper.sortByCompare(unsorted, IntComp.class, false);
