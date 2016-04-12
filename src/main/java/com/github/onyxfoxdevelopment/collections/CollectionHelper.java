@@ -87,4 +87,21 @@ public class CollectionHelper
 		}
 		return l;
 	}
+
+	/**
+	 * Returns a slice of a collection, up to maxLen in size
+	 *
+	 * @param c      the collection to cut
+	 * @param maxLen the length of the slice
+	 * @param <E>    collection element type
+	 * @return a slice of {@code c} {@code maxLen} in size, if {@code maxLen} is less than {@code c.size()}, otherwise, return {@code c}
+	 */
+	public static <E> Collection<E> cutMaxLen(Collection<E> c, int maxLen)
+	{
+		if (maxLen < c.size())
+		{
+			return ((List<E>) c).subList(0, maxLen);
+		}
+		return c;
+	}
 }

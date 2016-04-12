@@ -28,6 +28,28 @@ import java.util.List;
 public class CollectionHelperTest
 {
 	@Test
+	public void cutMaxLen() throws Exception
+	{
+		List<Integer> list = Arrays.asList(1, 1, 1, 1, 15, 15, 31, 584, 2121, 53, 1, 51);
+
+		// Check cutting the list down to size
+		for (int i = 1; i < list.size(); i++)
+		{
+			List<Integer> cutList = (List<Integer>) CollectionHelper.cutMaxLen(list, i);
+			System.out.println(cutList.size() + "=" + i);
+			assert cutList.size() == i;
+		}
+
+		// Check when the cut is longer than the list
+		for (int i = list.size(); i < list.size() * 2; i++)
+		{
+			List<Integer> cutList = (List<Integer>) CollectionHelper.cutMaxLen(list, i);
+			assert cutList.equals(list);
+		}
+
+	}
+
+	@Test
 	public void sortByCompare() throws Exception
 	{
 		LinkedList<Integer> unsorted = new LinkedList<>(Arrays.asList(1, 2, 7, 1, 2, 11, 12, 65, 2, 4, 6, 34, 9));
