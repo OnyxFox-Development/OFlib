@@ -16,29 +16,22 @@
  * along with OFlib.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.github.OnyxFoxDevelopment.environment;
+package com.github.onyxfoxdevelopment.collections;
 
-/**
- * A collection of methods for interfacing with the runtime environment
- */
-public class Environment
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class CollectionHelperTest
 {
-	/**
-	 * Checks if a class is loaded in the current JVM
-	 *
-	 * @param binaryName Full class name including package
-	 * @return true if class is loaded, false otherwise
-	 */
-	public static boolean isClassLoaded(String binaryName)
+	@Test
+	public void randomElement() throws Exception
 	{
-		try
-		{
-			Class.forName(binaryName, false, Environment.class.getClassLoader());
-		}
-		catch (ClassNotFoundException e)
-		{
-			return false;
-		}
-		return true;
+		List<Integer> testCollection = Arrays.asList(0, 1, 1, 2, 4, 4, 185, 1651, 2, 8, 2, 1651, 21, 531, 51, 231, 53, 15, 15, 1);
+
+		List<Integer> randomElements = (List<Integer>) CollectionHelper.randomElement(testCollection, 10, true);
+		assert randomElements.size() == 10;
 	}
+	
 }

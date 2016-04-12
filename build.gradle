@@ -20,8 +20,8 @@ apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'signing'
 
-version = '0.1'
-group = 'com.github.OnyxFoxDevelopment'
+version = '0.2'
+group = 'com.github.onyxfoxdevelopment'
 
 // If TeamCity is running this build, lets set the version info
 def buildNum = '0'
@@ -45,7 +45,6 @@ dependencies {
     testCompile 'junit:junit:4.11'
     compile 'com.google.code.findbugs:jsr305:3.0.1'
     compile 'com.google.guava:guava:19.0'
-    //compile 'com.googlecode.lanterna:lanterna:3.0.0-beta1'
 }
 
 tasks.javadoc {

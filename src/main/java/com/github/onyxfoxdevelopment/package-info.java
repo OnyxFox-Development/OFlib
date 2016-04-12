@@ -18,6 +18,5 @@
 
 /**
  * @author linuxdemon
- * @version
  */
-package com.github.OnyxFoxDevelopment;
+package com.github.onyxfoxdevelopment;

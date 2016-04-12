@@ -16,7 +16,7 @@
  * along with OFlib.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.github.OnyxFoxDevelopment.map;
+package com.github.onyxfoxdevelopment.map;
 
 import org.junit.Test;
 

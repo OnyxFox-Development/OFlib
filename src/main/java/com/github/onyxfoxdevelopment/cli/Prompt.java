@@ -16,7 +16,7 @@
  * along with OFlib.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.github.OnyxFoxDevelopment.cli;
+package com.github.onyxfoxdevelopment.cli;
 
 import java.io.Console;
 import java.util.LinkedList;

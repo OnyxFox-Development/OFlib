@@ -19,4 +19,4 @@
 /**
  * A collection of utility classes for interfacing with the terminal
  */
-package com.github.OnyxFoxDevelopment.cli;
+package com.github.onyxfoxdevelopment.cli;

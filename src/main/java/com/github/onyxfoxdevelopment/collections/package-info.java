@@ -19,4 +19,4 @@
 /**
  * A collection of utility classes for collections and all types that implement {@link java.util.Collection}
  */
-package com.github.OnyxFoxDevelopment.collections;
+package com.github.onyxfoxdevelopment.collections;

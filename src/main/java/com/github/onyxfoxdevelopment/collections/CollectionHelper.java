@@ -16,7 +16,7 @@
  * along with OFlib.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.github.OnyxFoxDevelopment.collections;
+package com.github.onyxfoxdevelopment.collections;
 
 import java.util.ArrayList;
 import java.util.Collection;
