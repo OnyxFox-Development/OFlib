@@ -41,7 +41,7 @@ public class MapHelper
 	 * @param reverse Should order be reverse
 	 * @return Sorted Map
 	 */
-	public static <K, V extends Comparable> LinkedHashMap<K, V> sortByValues(Map<K, V> map, boolean reverse)
+	public static <K, V extends Comparable<V>> LinkedHashMap<K, V> sortByValues(Map<K, V> map, boolean reverse)
 	{
 		int moves = 0;
 		boolean firstRun = true;
