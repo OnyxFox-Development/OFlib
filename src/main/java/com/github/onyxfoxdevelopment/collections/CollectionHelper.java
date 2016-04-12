@@ -33,7 +33,6 @@ public class CollectionHelper
 	 * @param c      Collection to select from
 	 * @param n      Number of elements to select
 	 * @param unique Whether the selection should be unique
-	 * @param <E>    Type of element in collection
 	 * @return Random element(s) from collection
 	 */
 	public static <E> Collection<E> randomElement(Collection<E> c, int n, boolean unique)
@@ -56,7 +55,6 @@ public class CollectionHelper
 	 * @param c       Collection to be sorted
 	 * @param k       Comparator to sort by
 	 * @param reverse Whether to reverse the sort order
-	 * @param <E>     Element type
 	 * @return a {@link LinkedList} of the sorted elements
 	 * @throws IllegalAccessException when unable to access the comparator class
 	 * @throws InstantiationException when unable to instantiate to comparator class
@@ -93,7 +91,6 @@ public class CollectionHelper
 	 *
 	 * @param c      the collection to cut
 	 * @param maxLen the length of the slice
-	 * @param <E>    collection element type
 	 * @return a slice of {@code c} {@code maxLen} in size, if {@code maxLen} is less than {@code c.size()}, otherwise, return {@code c}
 	 */
 	public static <E> Collection<E> cutMaxLen(Collection<E> c, int maxLen)
