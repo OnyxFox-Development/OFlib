@@ -22,6 +22,7 @@ import org.junit.Test;
 
 import java.util.LinkedHashMap;
 
+@SuppressWarnings ({"RedundantThrows", "unused"})
 public class MapHelperTest
 {
 	@Test

@@ -21,6 +21,7 @@ package com.github.onyxfoxdevelopment.environment;
 /**
  * A collection of methods for interfacing with the runtime environment
  */
+@SuppressWarnings ({"WeakerAccess", "unused"})
 public class Environment
 {
 	/**

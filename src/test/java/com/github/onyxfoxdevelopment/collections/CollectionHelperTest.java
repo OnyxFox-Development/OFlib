@@ -25,6 +25,7 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
+@SuppressWarnings ({"RedundantThrows", "unused"})
 public class CollectionHelperTest
 {
 	@Test
@@ -72,6 +73,7 @@ public class CollectionHelperTest
 		assert randomElements.size() == 10;
 	}
 
+	@SuppressWarnings ({"WeakerAccess", "unused"})
 	public static class IntComp implements Comparator<Integer>
 	{
 		@Override

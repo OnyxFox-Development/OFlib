@@ -71,7 +71,7 @@ public class ConsoleWrapper
 		{
 			return console.readLine();
 		}
-		Scanner s = new Scanner(System.in);
+		Scanner s = new Scanner(System.in, "utf-8");
 		return s.nextLine();
 	}
 }

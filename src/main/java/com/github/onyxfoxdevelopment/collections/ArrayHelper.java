@@ -18,6 +18,7 @@
 
 package com.github.onyxfoxdevelopment.collections;
 
+@SuppressWarnings ({"WeakerAccess", "unused"})
 public class ArrayHelper
 {
 }

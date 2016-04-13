@@ -31,7 +31,9 @@ if (hasProperty("teamcity")) {
 }
 version = version + "." + buildNum
 
+//noinspection GroovyUnusedAssignment
 sourceCompatibility = 1.7
+//noinspection GroovyUnusedAssignment
 targetCompatibility = 1.7
 
 repositories {
@@ -48,20 +50,24 @@ dependencies {
 }
 
 tasks.javadoc {
+    //noinspection GroovyUnusedAssignment
     File destinationDir = new File('build/docs')
 }
 
+//noinspection GroovyAssignabilityCheck
 jar {
     from "LICENSE"
 }
 
 task javadocJar(type: Jar, dependsOn: 'javadoc') {
+    //noinspection GroovyAssignabilityCheck
     from tasks.javadoc.destinationDir
     from "LICENSE"
     classifier = 'javadoc'
 }
 
 task sourcesJar(type: Jar) {
+    //noinspection GroovyAssignabilityCheck
     from sourceSets.main.allSource
     from "LICENSE"
     from "README.md"
@@ -78,23 +84,19 @@ signing {
     sign configurations.archives
 }
 
+//noinspection GroovyAssignabilityCheck
 uploadArchives {
     repositories {
         mavenDeployer {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
-            boolean local = false;
-            if (!local) {
-                repository(
-                        url: "http://maven.walterbarnes.net:8081/nexus/content/repositories/releases") {
-                    authentication(userName: nexusUsername, password: nexusPassword)
-                }
-                snapshotRepository(
-                        url: "http://maven.walterbarnes.net:8081/nexus/content/repositories/snaposhots") {
-                    authentication(userName: nexusUsername, password: nexusPassword)
-                }
-            } else {
-                repository(url: "file://${local_maven}")
+            repository(
+                    url: "http://maven.walterbarnes.net:8081/nexus/content/repositories/releases") {
+                authentication(userName: nexusUsername, password: nexusPassword)
+            }
+            snapshotRepository(
+                    url: "http://maven.walterbarnes.net:8081/nexus/content/repositories/snapshots") {
+                authentication(userName: nexusUsername, password: nexusPassword)
             }
 
             pom.project {

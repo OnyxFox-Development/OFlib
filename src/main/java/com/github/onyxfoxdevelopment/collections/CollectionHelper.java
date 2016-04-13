@@ -24,7 +24,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * A collection of utility methods for collections and all types that implement {@link Collection}
  */
-@SuppressWarnings ("WeakerAccess")
+@SuppressWarnings ({"WeakerAccess", "SameParameterValue"})
 public class CollectionHelper
 {
 	/**
@@ -97,7 +97,7 @@ public class CollectionHelper
 	{
 		if (maxLen < c.size())
 		{
-			return ((List<E>) c).subList(0, maxLen);
+			return new ArrayList<>(c).subList(0, maxLen);
 		}
 		return c;
 	}
