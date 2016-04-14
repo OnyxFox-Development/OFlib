@@ -50,16 +50,16 @@ public class CollectionHelper
 	}
 
 	/**
-	 * Sorts a collection using a comparator and returns it as a {@link LinkedList}
+	 * Sorts a collection using a comparator and returns it as a {@link List}
 	 *
 	 * @param c       Collection to be sorted
 	 * @param k       Comparator to sort by
 	 * @param reverse Whether to reverse the sort order
-	 * @return a {@link LinkedList} of the sorted elements
+	 * @return a {@link List} of the sorted elements
 	 * @throws IllegalAccessException when unable to access the comparator class
 	 * @throws InstantiationException when unable to instantiate to comparator class
 	 */
-	public static <E> LinkedList<E> sortByCompare(Collection<E> c, Class<? extends Comparator<E>> k, boolean reverse) throws IllegalAccessException, InstantiationException
+	public static <E> List<E> sortByCompare(Collection<E> c, Class<? extends Comparator<E>> k, boolean reverse) throws IllegalAccessException, InstantiationException
 	{
 		Comparator<E> comp = k.newInstance();
 		int moves = 0;
